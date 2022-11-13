@@ -12,11 +12,13 @@ const App = () => {
   const [searchInput, setSearchInput] = useState('');
   
 
-  const searchMovies = async (title) => {
-    const response = await fetch(`https://www.omdbapi.com?apikey=${process.env.REACT_APP_API_KEY}&s=${title}`);
+  const searchMovies = async (title, index) => {
+    const response = await fetch(`https://www.omdbapi.com?i=${index}&apikey=${process.env.REACT_APP_API_KEY}&s=${title}`);
     const data = await response.json();
+    // const output = data.Search
+    setMovies(data.Search);
+    // console.log(data.Search[0].imdbID);
 
-    setMovies(data.Search)
   };
 
 

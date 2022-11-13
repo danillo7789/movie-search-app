@@ -1,6 +1,6 @@
 
 const MovieCard = ({ movie }) => {
-  console.log(movie.imdbID)
+  // console.log(movie.imdbID)
   return (
     <div className='movie'>
       <div>
