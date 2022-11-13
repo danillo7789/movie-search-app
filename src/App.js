@@ -17,13 +17,16 @@ const App = () => {
     const data = await response.json();
     // const output = data.Search
     setMovies(data.Search);
-    // console.log(data.Search[0].imdbID);
-
   };
 
+  const enterKeySearch = (e) => {
+    if (e.key === 'Enter') {
+      searchMovies(searchInput);
+    }
+  }
 
   useEffect(() => {
-    //passing in action as title
+    //passing in a search value
     searchMovies('war');
   }, []);
 
@@ -36,6 +39,7 @@ const App = () => {
           value={searchInput}
           placeholder='Search for Movies'
           onChange={(e) => setSearchInput(e.target.value)}
+          onKeyUp={(e) => enterKeySearch(e)} 
         />
         <img
           src={SearchIcon}
