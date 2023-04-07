@@ -4,15 +4,15 @@ import SearchIcon from './search.svg';
 import MovieCard from './MovieCard';
 
 const App = () => {
-
   const [movies, setMovies] = useState([]);
-
   const [searchInput, setSearchInput] = useState('');
-  
 
-  const searchMovies = async (title, index) => {
-    const response = await fetch(`https://www.omdbapi.com?i=${index}&apikey=${process.env.REACT_APP_API_KEY}&s=${title}`);
+  const API_KEY = process.env.REACT_APP_API_KEY
+  
+  const searchMovies = async (title) => {
+    const response = await fetch(`https://www.omdbapi.com?i=${title.imdbID}&apikey=${API_KEY}&s=${title}`);
     const data = await response.json();
+    console.log(data)
     // const output = data.Search
     setMovies(data.Search);
   };
@@ -37,7 +37,7 @@ const App = () => {
           value={searchInput}
           placeholder='Search for Movies'
           onChange={(e) => setSearchInput(e.target.value)}
-          onKeyUp={(e) => enterKeySearch(e)} 
+          onKeyUp={enterKeySearch} 
         />
         <img
           src={SearchIcon}
